@@ -9,6 +9,9 @@ public class ProductBasket {
     private int count = 0;
 
     public void addProduct(Product product) {
+        if (product == null) {
+            return;
+        }
         if (count < products.length) {
             products[count] = product;
             count++;
@@ -33,8 +36,10 @@ public class ProductBasket {
         }
 
         for (int i = 0; i < count; i++) {
-            Product currentProduct = products[i];
-            System.out.println(currentProduct.getProductName() + ": " + currentProduct.getCostOfTheProduct());
+            if (products[i] != null) {
+                Product currentProduct = products[i];
+                System.out.println(currentProduct.getProductName() + ": " + currentProduct.getCostOfTheProduct());
+            }
         }
 
         System.out.println("Итого: " + getTotalCost());
@@ -42,7 +47,7 @@ public class ProductBasket {
 
     public boolean checkProductByName(String searchName) {
         for (int i = 0; i < count; i++) {
-            if (products[i].getProductName().equals(searchName)) {
+            if (products[i] != null && products[i].getProductName().equals(searchName)) {
                 return true;
             }
         }
