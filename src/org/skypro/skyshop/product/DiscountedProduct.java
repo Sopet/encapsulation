@@ -28,3 +28,4 @@ public class DiscountedProduct extends Product {
         return name + " со скидкой: " + basePrice + "(" + discountInWholePercentages + "%)";
     }
 }
+
