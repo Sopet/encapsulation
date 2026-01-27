@@ -6,6 +6,8 @@ import org.skypro.skyshop.product.DiscountedProduct;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.basket.ProductBasket;
 import java.util.Objects;
+import org.skypro.skyshop.article.Article;
+import org.skypro.skyshop.Searchable;
 
 public class App {
     public static void main(String[] args) {
@@ -46,5 +48,25 @@ public class App {
 
         System.out.println("--- Поиск в пустой корзине ---");
         System.out.println("Найден? " + basket.checkProductByName("Телефон")); // Ожидаем false
+
+        System.out.println("--- ТЕСТ ПОИСКА ---");
+        SearchEngine engine = new SearchEngine(10);
+
+        engine.add(phone);
+        engine.add(computer);
+        engine.add(car);
+
+        Article article1 = new Article("О телефонах", "Телефоны бывают разные...");
+        Article article2 = new Article("Компьютеры", "Мощные машины для работы");
+        engine.add(article1);
+        engine.add(article2);
+
+        System.out.println("Поиск 'телефон':");
+        Searchable[] phoneResults = engine.search("телефон");
+        System.out.println(java.util.Arrays.toString(phoneResults));
+
+        System.out.println("Поиск 'компьютер':");
+        Searchable[] compResults = engine.search("компьютер");
+        System.out.println(java.util.Arrays.toString(compResults));
     }
 }
